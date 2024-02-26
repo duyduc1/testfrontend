@@ -1,0 +1,252 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+  * {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .ul_container {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+  }
+
+  ul {
+    font-size: 18px;
+  }
+
+  form {
+    width: 70rem;
+    height: 5rem;
+    background-color: beige;
+    margin-left: 26rem;
+    border-radius: 10px;
+  }
+
+  .format_ul {
+    width: 1200px;
+    height: 500px;
+    background-color: aquamarine;
+    border-radius: 20px;
+    margin-bottom: 20rem;
+  }
+
+  button {
+    margin-left: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    background-color: white;
+    color: black;
+  }
+
+  input {
+    border-radius: 10px;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    background-color: CornflowerBlue;
+    color: white;
+    padding: 10px;
+    margin-left: 20px;
+  }
+
+  input::placeholder {
+    color: white;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  .li_1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 130px;
+    background-color: #69a1f6;
+    border-radius: 20px;
+    color: white;
+    margin-top: 1.5rem;
+    margin-left: 28rem;
+  }
+
+  .li_1:hover {
+    background-color: rgb(76, 76, 171);
+    transition: 2s;
+    color: aquamarine;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .li_2 {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 100px;
+    background-color: yellow;
+    color: black;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: 28rem;
+  }
+
+  .li_2:hover {
+    background-color: rgb(237, 237, 116);
+    transition: 2s;
+    color: rgb(27, 26, 26);
+  }
+
+  .li_3 {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 100px;
+    background-color: rgb(0, 255, 72);
+    color: black;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: 50px;
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn_1 {
+    margin-left: 16rem;
+    margin-top: 30px;
+    border: 1px solid #fff;
+    width: 300px;
+    height: 50px;
+    border-radius: 20px;
+  }
+
+  .margin {
+    margin-top: 20px;
+  }
+
+  .input-form {
+    margin-left: 2rem;
+  }
+  .form_search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1120px;
+    height: 100px;
+    background-color: #7FFFD4;
+    margin-left:26rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+    color: black;
+  }
+  .form_search p {
+    margin-left: 20px;
+    margin-top: 0.8rem;
+    width: 500px;
+    height: 60px;
+    background-color: CornflowerBlue;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 10px;
+  }
+</style>
+
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link active" href="/dashboard">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/login">Login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/register">Register</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="profile">profile</a>
+  </li>
+</ul>
+
+<form>
+  <div class="input-box">
+    <label for="content">Chuyên Đề:</label>
+    <input type="text" id="postName" [(ngModel)]="newPost.Categories" name="Categories" required>
+  </div>
+  <div class="input-form">
+    <label for="postDescription">Nội Dung:</label>
+    <input id="postDescription" [(ngModel)]="newPost.content" name="content" required>
+  </div>
+  <button type="submit" (click)="createPost()">Tạo Bài Viết Mới</button>
+</form>
+
+
+<div class="margin" *ngFor="let post of apiData">
+  <div>
+    <form>
+      <label for="updateContent">Cập nhât Nội Dung mới:</label>
+      <input type="text" id="updateContent" name="updateContent" [(ngModel)]="updatePost.content" required>
+
+      <div class="input-form">
+        <label for="updateCategories">Cập nhật Chuyên Đề mới:</label>
+        <input type="text" id="updateCategories" name="updateCategories" [(ngModel)]="updatePost.Categories" required>
+      </div>
+
+      <button type="submit" (click)="updatePostMethod(post._id)">Cập Nhật</button>
+    </form>
+  </div>
+</div>
+
+
+
+<div  style="margin-top: 20px;">
+  <form>
+    <label for="idInput">Tìm kiếm theo ID:</label>
+    <input type="text" id="idInput" [(ngModel)]="searchId" name="searchId" />
+    <button type="submit" (click)="searchById()">Tìm kiếm</button>
+  </form>
+  <div class="form_search" *ngIf="searchResults">
+    <h3>Kết quả tìm kiếm : </h3>
+    <p>Chuyên Đề : {{ searchResults.Categories }} . <br> Nội Dung : {{ searchResults.content }} .</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="body">
+    <ul class="ul_container" *ngFor="let data of apiData">
+      <div class="format_ul">
+        <li class=" li_1">
+          <h2>Chuyên Đề : {{ data.Categories }}</h2>
+        </li>
+        <li class="li_3">ID: {{ data._id }}</li>
+        <li class="li_2">Nội Dung: {{ data.content }}</li>
+        <button class="btn_1" (click)="deletePost(data._id)">Delete</button>
+      </div>
+    </ul>
+  </div>
+</div>
+
+
+
+<router-outlet></router-outlet>
